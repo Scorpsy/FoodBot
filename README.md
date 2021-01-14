@@ -11,6 +11,8 @@ This project involves with the creation of a Discord bot that returns location o
 ## Technologies
 Project is created with:
 * Python
+* JavaScript
+* Discord.js
 
 
 ## Setup
