@@ -9,6 +9,9 @@ module.exports = {
         if (!args.length) {
             return message.channel.send(`What do you want me to say yes or no to??`);
         }
+        //console.log(String(message));
+        //console.log(String(args));
+        //console.log(String(search));
 
         console.log(a);
         switch(a) {
