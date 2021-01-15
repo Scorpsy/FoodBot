@@ -1,6 +1,6 @@
 module.exports = {
-    name: 'ping',
-    description: 'this is a ping command!',
+    name: 'spolls',
+    description: 'creating polls',
     execute(message,args) {
         message.channel.send('Currently Under Construction');
     }
