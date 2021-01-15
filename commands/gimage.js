@@ -4,6 +4,7 @@ module.exports = {
     execute(message,args) {
 
         var search = args.slice(0).join(" "); 
+        //creates an array from the sliced words
 
         if (!args.length) {
             return message.channel.send(`Please add an image`);
