@@ -34,7 +34,7 @@ module.exports = {
      
             var links = $(".image a.link");
 
-            console.log('test');
+            //console.log('test');
 
             var urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr("href"));
             console.log(urls);
@@ -45,8 +45,6 @@ module.exports = {
      
             const newEmbed = new Discord.MessageEmbed()
             .setColor('#0011DD')
-            .setTitle(String(search))
-            .setDescription('The picture sir')
             .setImage(String(urls[Math.floor(Math.random() * urls.length)]));
 
             // Send result
