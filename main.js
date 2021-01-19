@@ -29,8 +29,8 @@ client.on('message', async(message) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
-    if(command === 'ping'){
-        client.commands.get('ping').execute(message, args);
+    if(command === '8names' || command === '8n'){
+        client.commands.get('8ballnames').execute(message, args);
     }
     else if(command === 'gimage'){
         client.commands.get('gimage').execute(message, args);
@@ -38,7 +38,7 @@ client.on('message', async(message) => {
     else if(command === 'help'){
         client.commands.get('help').execute(message, args, Discord);
     }
-    else if(command === '8ball'){
+    else if(command === '8ball' || command === '8b'){
         client.commands.get('8ball').execute(message, args);
     }
     else if(command === 'spolls'){
