@@ -41,9 +41,9 @@ client.on('message', async(message) => {
     else if(command === '8ball'){
         client.commands.get('8ball').execute(message, args);
     }
-    // else if(command === 'spolls'){
-    //     client.commands.get('spolls').execute(message, args);
-    // }
+    else if(command === 'spolls'){
+        client.commands.get('spolls').execute(message, args);
+    }
     else{
         message.channel.send('That response is curretly under development');
     }
