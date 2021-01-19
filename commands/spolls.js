@@ -6,12 +6,12 @@ const timeRegex = RegExp(/{(\d+(s|m|h|d|w))}/);
 const moment = require('moment');
 const ms = require('ms');
 
-
 module.exports = {
     name: 'spolls',
     description: 'creating polls',
     async execute(message,args) {
 
+        const format = '{Title} [Option 1] [Option 2] [Option 3]';
         const pollParameters = args.join(' ');
         const pollTitle = squigglyRegex.test(pollParameters) ? squigglyRegex.exec(pollParameters)[1] : null;
         console.log(squigglyRegex.exec(pollParameters));
@@ -20,7 +20,7 @@ module.exports = {
         // console.log(pollTitle);
 
         if (!pollTitle) {
-            return message.channel.send('You need to specify a poll title').catch(err => console.log(err));
+            return message.channel.send('Use format: ' + format).catch(err => console.log(err));
         }
 
         pollParameters.replace(`{${pollTitle}}`, '');
