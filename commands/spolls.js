@@ -36,6 +36,8 @@ module.exports = {
         const pollString = pollsArray.map(poll => `${emojiArray()[i++]} ${poll.replace(/\[|\]/g, '')}`).join('\n\n');
         const timedPoll = timeRegex.test(args[1]) ? timeRegex.exec(args[1])[1] : null;
 
+        console.log(pollString);
+
         const embed = {
             color: '#c5f776',
             title: pollTitle,
