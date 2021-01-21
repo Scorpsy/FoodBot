@@ -28,10 +28,12 @@ module.exports = {
         //console.log(r);
         const rngString = rngsArray.map(poll => ` ${poll.replace(/\[|\]/g, '')}`);
 
+        //console.log(rngString);
+
         const embed = {
             color: '#b41467',
             title: rngTitle,
-            description: rngString[r],
+            description: rngString[r], 
         };
 
 
