@@ -9,6 +9,7 @@
   "author": "Matthew A",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
     "discord.js": "^12.5.1",
     "moment": "^2.29.1",

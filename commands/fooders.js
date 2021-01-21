@@ -14,8 +14,6 @@ module.exports = {
         const orderTitle = squigglyRegex.test(pollParameters) ? squigglyRegex.exec(pollParameters)[1] : null;
         console.log(squigglyRegex.exec(pollParameters));
 
-        // console.log(pollParameters);
-        // console.log(pollTitle);
 
         if (!orderTitle) {
             return message.channel.send('Use format: ' + format).catch(err => console.log(err));
@@ -23,37 +21,7 @@ module.exports = {
 
         orders.setTitle(orderTitle);
 
-        // pollParameters.replace(`{${orderTitle}}`, '');
-        // const pollsArray = pollParameters.match(squareRegex);
-
-        // if (!pollsArray) {
-        //     return message.channel.send('You need to specify poll options').catch(err => console.log(err));
-        // }
-
-        // // console.log(pollsArray);
-        // var arrayLength = pollsArray.length;
-        // const rngString = pollsArray.map(poll => `${poll.replace(/\[|\]/g, '')}`);
-
-        // var n = new Array();
-        // var h = 0;
-        // for(var i = 0; i < arrayLength; i+=2){
-        //     n[h++] = rngString[i];
-        // }
-
-        // h = 0;
-        // var o = new Array();
-        // for(i = 1; i <= arrayLength; i+=2){
-        //     //console.log(rngString[i]);
-        //     o[h++]= rngString[i];
-        // }
-        // for(i = 0; i <= n.length - 1; i++){
-        //     orders.addField(n[i],o[i]);
-
-        // }
-
-        //message.channel.send({ embed: embed }).catch(err => console.log(err));
         message.channel.send('order for ' + orderTitle + ' created');
-        //message.channel.send(orders);
         
         return orders;
 

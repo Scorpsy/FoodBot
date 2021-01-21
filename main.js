@@ -4,6 +4,7 @@ const cheerio = require('cheerio');
 const request = require('request');
 const fs = require('fs');
 
+const {prefix} = require('./config.json');
 
 const squigglyRegex = RegExp(/{(.*?)}/);
 const squareRegex = RegExp(/\[[^[]+\]/g);
@@ -11,7 +12,6 @@ const moment = require('moment');
 const ms = require('ms');
 
 const client = new Discord.Client();
-const prefix = '-';
 
 client.commands = new Discord.Collection();
 var orderEmbed;
@@ -54,7 +54,7 @@ client.on('message', async(message) => {
     }
     else if(command === 'fooders' || command === 'fo'){
         orderEmbed = fooders(message, args);
-        //message.channel.send(orderEmbed);
+        
     }
     else if(command === 'addorder' || command === 'ad'){
         if(!orderEmbed){
@@ -96,6 +96,7 @@ function fooders(message, args){
   
         return orders;
 
+
 }
 function addorder(message, args,order){
 
@@ -109,11 +110,13 @@ function addorder(message, args,order){
         }
 
         var arrayLength = pollsArray.length;
+        let author = message.author.username;
+
         const orderString = pollsArray.map(poll => `${poll.replace(/\[|\]/g, '')}`);
 
-        order.addField(orderString[0],orderString[1])
+        order.addField(author,orderString[0])
 
-        message.channel.send('added ' + orderString[0] + "'s order of " + orderString[1]);
+        message.channel.send('added ' + author + "'s order of " + orderString[0]);
 
         return order;
 
