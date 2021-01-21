@@ -12,8 +12,11 @@ module.exports = {
                 {name:'spolls:', value:'Start a Poll, \n Use format: {Title} [Option 1] [Option 2] [Option 3]'},   
                 {name:'8ball:', value:'Replies Yes, No, or Mayhaps'},
                 {name:'8names:', value:'Replies with user inputs, \n Use format: {Description} [Name 1] [Name 2] [Name 3]'},
+                {name:'fooders:', value:'create order for a restaurant,\n Use format: {Restaurant}'},
+                {name:'addorder:', value:'add individual order of a person,\n Use format: [Name] [Order]'},
+                {name:'orderlist:', value:'Return order for a restaurant'},
             )
-            .setImage('https://static.zerochan.net/Mona.(Genshin.Impact).full.3112267.jpg');
+            //.setImage('https://static.zerochan.net/Mona.(Genshin.Impact).full.3112267.jpg');
 
 
             message.channel.send(helpEmbed);
