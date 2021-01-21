@@ -78,13 +78,10 @@ client.on('message', async(message) => {
 
 function fooders(message, args){
 
-    const format = '{Title}';
-        const pollParameters = args.join(' ');
-        const orderTitle = squigglyRegex.test(pollParameters) ? squigglyRegex.exec(pollParameters)[1] : null;
-        console.log(squigglyRegex.exec(pollParameters));
+        const orderTitle = args.join(' ');
 
         if (!orderTitle) {
-            return message.channel.send('Use format: ' + format).catch(err => console.log(err));
+            return message.channel.send('Please add a restaurant name').catch(err => console.log(err));
         }
 
         var orders = new Discord.MessageEmbed()
@@ -100,28 +97,19 @@ function fooders(message, args){
 }
 function addorder(message, args,order){
 
-    const format = '[Option 1] [Option 2] [Option 3]';
-        const pollParameters = args.join(' ');
+        const orderStuff = args.join(' ');
 
-        const pollsArray = pollParameters.match(squareRegex);
-
-        if (!pollsArray) {
-            return message.channel.send('You need to specify orders').catch(err => console.log(err));
+        if (!orderStuff) {
+            return message.channel.send('Please add an order').catch(err => console.log(err));
         }
-
-        var arrayLength = pollsArray.length;
         let author = message.author.username;
 
-        const orderString = pollsArray.map(poll => `${poll.replace(/\[|\]/g, '')}`);
+        order.addField(author,orderStuff)
 
-        order.addField(author,orderString[0])
-
-        message.channel.send('added ' + author + "'s order of " + orderString[0]);
+        message.channel.send('added ' + author + "'s order of " + orderStuff);
 
         return order;
 
 }
-
-
 
 client.login(config.token);

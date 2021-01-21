@@ -19,16 +19,12 @@ module.exports = {
         optionParameters.replace(`{${rngTitle}}`, '');
         const rngsArray = optionParameters.match(squareRegex);
 
-        //console.log(rngsArray[0]);
         var arrayLength = rngsArray.length;
-        //console.log(rngsArray[0]);
-        //console.log(arrayLength);
+ 
 
         const r = Math.floor(Math.random() * (arrayLength));
-        //console.log(r);
-        const rngString = rngsArray.map(poll => ` ${poll.replace(/\[|\]/g, '')}`);
 
-        //console.log(rngString);
+        const rngString = rngsArray.map(poll => ` ${poll.replace(/\[|\]/g, '')}`);
 
         const embed = {
             color: '#b41467',
