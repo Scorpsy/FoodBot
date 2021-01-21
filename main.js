@@ -57,8 +57,11 @@ client.on('message', async(message) => {
         //message.channel.send(orderEmbed);
     }
     else if(command === 'addorder' || command === 'ad'){
-        orderEmbed = addorder(message, args, orderEmbed);
-        //message.channel.send(orderEmbed);
+        if(!orderEmbed){
+            message.channel.send('please specify a restaurant');
+        }else{
+            orderEmbed = addorder(message, args, orderEmbed);
+        }
     }
     else if(command === 'orderlist' || command === 'ol'){
         if(!orderEmbed){
