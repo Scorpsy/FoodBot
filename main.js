@@ -74,6 +74,8 @@ client.on('message', async(message) => {
         if(!orderEmbed){
             message.reply('no order placed');
         }else{
+            console.log('all order cleared')
+            message.reply('All order cleared')
             orderEmbed = new Discord.MessageEmbed();
         }
     }
@@ -107,6 +109,8 @@ function addorder(message, args,order){
 
         const orderStuff = args.join(' ');
 
+        var author = message.author.username;
+
         if (!orderStuff) {
             return message.reply('Please add an order').catch(err => console.log(err));
         }
@@ -115,7 +119,7 @@ function addorder(message, args,order){
         console.log('food order added');
 
         //message.channel.send('added ' + author + "'s order of " + orderStuff);
-        message.reply('your order of' + orderStuff + ' has been added');
+        message.reply('your order of ' + orderStuff + ' has been added');
 
         return order;
 

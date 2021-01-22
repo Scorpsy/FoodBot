@@ -5,9 +5,12 @@ module.exports = {
     name: 'restaurant',
     description: 'Search for a restaurant',
     async execute(message,args,GoogleAPI) {
-        
+
         const businessID = args.join('-');
-        console.log(businessID);
+
+        if (!businessID) {
+            return message.reply('Please add a restaurant name').catch(err => console.log(err));
+        }
 
         let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${businessID}
         &inputtype=textquery&fields=place_id&key=${GoogleAPI}`;
@@ -26,7 +29,7 @@ module.exports = {
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data.result)
+                    //console.log(data.result)
                     
                     var d = new Date();
                     var n = d.getDay();
