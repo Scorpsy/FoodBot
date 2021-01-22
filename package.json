@@ -15,7 +15,9 @@
     "moment": "^2.29.1",
     "mongoose": "^5.11.12",
     "ms": "^2.1.3",
+    "node-fetch": "^2.6.1",
     "puppeteer": "^5.5.0",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "yelp-api": "^1.0.3"
   }
 }

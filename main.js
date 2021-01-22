@@ -1,20 +1,19 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-const cheerio = require('cheerio');
-const request = require('request');
 const fs = require('fs');
-
 const {prefix} = require('./config.json');
 
 const squigglyRegex = RegExp(/{(.*?)}/);
 const squareRegex = RegExp(/\[[^[]+\]/g);
-const moment = require('moment');
-const ms = require('ms');
-
 const client = new Discord.Client();
-
 client.commands = new Discord.Collection();
 var orderEmbed;
+
+let yelpAPI = require('yelp-api');
+
+let GoogleAPI = config.google;
+
+
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
@@ -40,6 +39,9 @@ client.on('message', async(message) => {
     if(command === '8names' || command === '8n'){
         client.commands.get('8ballnames').execute(message, args);
     }
+    else if(command === 'restaurant' || command === 'r'){
+        client.commands.get('restaurant').execute(message, args, GoogleAPI);
+    }
     else if(command === 'gimage'){
         client.commands.get('gimage').execute(message, args);
     }
@@ -54,20 +56,25 @@ client.on('message', async(message) => {
     }
     else if(command === 'fooders' || command === 'fo'){
         orderEmbed = fooders(message, args);
-        
     }
     else if(command === 'addorder' || command === 'ad'){
         if(!orderEmbed){
-            message.channel.send('please specify a restaurant');
+            message.reply('please specify an order');
         }else{
             orderEmbed = addorder(message, args, orderEmbed);
         }
     }
     else if(command === 'orderlist' || command === 'ol'){
         if(!orderEmbed){
-            message.channel.send('no order placed');
+            message.reply('no order created');
         }else{
             message.channel.send(orderEmbed);
+        }
+    }else if(command === 'clearorder' || command === 'co'){
+        if(!orderEmbed){
+            message.reply('no order placed');
+        }else{
+            orderEmbed = new Discord.MessageEmbed();
         }
     }
     else{
@@ -81,13 +88,14 @@ function fooders(message, args){
         const orderTitle = args.join(' ');
 
         if (!orderTitle) {
-            return message.channel.send('Please add a restaurant name').catch(err => console.log(err));
+            return message.reply('Please add a restaurant name').catch(err => console.log(err));
         }
 
         var orders = new Discord.MessageEmbed()
                 .setColor('#223441');
 
         orders.setTitle(orderTitle);
+        console.log('order created');
 
         message.channel.send('order for ' + orderTitle + ' created');
   
@@ -100,13 +108,14 @@ function addorder(message, args,order){
         const orderStuff = args.join(' ');
 
         if (!orderStuff) {
-            return message.channel.send('Please add an order').catch(err => console.log(err));
+            return message.reply('Please add an order').catch(err => console.log(err));
         }
-        let author = message.author.username;
 
         order.addField(author,orderStuff)
+        console.log('food order added');
 
-        message.channel.send('added ' + author + "'s order of " + orderStuff);
+        //message.channel.send('added ' + author + "'s order of " + orderStuff);
+        message.reply('your order of' + orderStuff + ' has been added');
 
         return order;
 
