@@ -29,7 +29,7 @@ module.exports = {
                     return response.json();
                 })
                 .then((data) => {
-                    //console.log(data.result)
+                    console.log(data.result)
                     
                     var d = new Date();
                     var n = d.getDay();
@@ -41,6 +41,7 @@ module.exports = {
                         { name: "Ratings", value: result.rating, inline: true },
                     );
 
+                    if(result.opening_hours !== undefined){
                     switch(n){
                         case 0:
                             restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[6]);
@@ -65,11 +66,14 @@ module.exports = {
                             break;
 
                     }
+                
 
                     if(result.opening_hours.open_now){
                         restEmbed.setColor("#1da06a");
                     }else{
                         restEmbed.setColor("#b82a10");
+                    }
+
                     }
 
                     if(result.website){

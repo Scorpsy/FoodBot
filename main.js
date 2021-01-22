@@ -5,6 +5,8 @@ const {prefix} = require('./config.json');
 
 const squigglyRegex = RegExp(/{(.*?)}/);
 const squareRegex = RegExp(/\[[^[]+\]/g);
+
+
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 var orderEmbed;
