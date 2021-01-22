@@ -59,7 +59,7 @@ client.on('message', async(message) => {
     else if(command === 'fooders' || command === 'fo'){
         orderEmbed = fooders(message, args);
     }
-    else if(command === 'addorder' || command === 'ad'){
+    else if(command === 'addorder' || command === 'add'){
         if(!orderEmbed){
             message.reply('please specify an order');
         }else{

@@ -29,7 +29,7 @@ module.exports = {
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data.result)
+                    //console.log(data.result)
                     
                     var d = new Date();
                     var n = d.getDay();
