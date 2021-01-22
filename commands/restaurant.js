@@ -74,7 +74,7 @@ module.exports = {
                         restEmbed.setColor("#b82a10");
                     }
 
-                    }
+                }
 
                     if(result.website){
                         restEmbed.setTitle(result.name)
