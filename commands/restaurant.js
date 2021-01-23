@@ -20,6 +20,7 @@ module.exports = {
                     return response.json();
                 })
                 .then( (data) => {
+
                     var placeID = data.candidates[0].place_id;
 
                     return  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&fields=name,rating,formatted_phone_number,formatted_address,opening_hours,website,photo&key=${GoogleAPI}`);
@@ -37,9 +38,14 @@ module.exports = {
 
                     const restEmbed = new Discord.MessageEmbed()
                     .addFields(
+                        { name: 'Address', value: result.formatted_address},
                         { name: 'Phone Number', value: result.formatted_phone_number, inline: true },
-                        { name: "Ratings", value: result.rating, inline: true },
+                        
                     );
+
+                    if(result.rating){
+                        restEmbed.addField("Rating", result.rating, true)
+                    }
 
                     if(result.opening_hours !== undefined){
                     switch(n){
@@ -87,6 +93,7 @@ module.exports = {
 
                 })
                 .catch((err) => {
+                    message.reply('Please provide a real location')
                     console.error(err);
                 })
 
