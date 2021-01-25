@@ -23,7 +23,7 @@ module.exports = {
 
                     var placeID = data.candidates[0].place_id;
 
-                    return  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&fields=name,rating,formatted_phone_number,formatted_address,opening_hours,website,photo&key=${GoogleAPI}`);
+                    return  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&fields=price_level,name,rating,formatted_phone_number,formatted_address,opening_hours,website,photo&key=${GoogleAPI}`);
 
                 })
                 .then((response) => {
@@ -46,33 +46,52 @@ module.exports = {
                     if(result.rating){
                         restEmbed.addField("Rating", result.rating, true)
                     }
+                    if(result.price_level){
+
+                        var dollarSign = result.price_level;
+                        var string =""
+
+                        for(var i = 1 ; i <= dollarSign; i++){
+                            string += "$"
+
+                        }
+
+                        restEmbed.addField("Price Level", string,true);
+                        
+                    }
 
                     if(result.opening_hours !== undefined){
                     switch(n){
                         case 0:
-                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[6]);
+                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[6],true);
+                            restEmbed.addField("Tomorrow's Hours", result.opening_hours.weekday_text[0], true);
                             break;
                         case 1:
-                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[0]);
+                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[0],true);
+                            restEmbed.addField("Tomorrow's Hours", result.opening_hours.weekday_text[1], true);
                             break;
                         case 2:
-                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[1]);
+                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[1],true);
+                            restEmbed.addField("Tomorrow's Hours", result.opening_hours.weekday_text[2], true);
                             break;
                         case 3:
-                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[2]);
+                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[2],true);
+                            restEmbed.addField("Tomorrow's Hours", result.opening_hours.weekday_text[3], true);
                             break;
                         case 4:
-                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[3]);
+                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[3],true);
+                            restEmbed.addField("Tomorrow's Hours", result.opening_hours.weekday_text[4], true);
                             break;
                         case 5:
-                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[4]);
+                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[4],true);
+                            restEmbed.addField("Tomorrow's Hours", result.opening_hours.weekday_text[5], true);
                             break;
                         case 6:
-                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[5]);
+                            restEmbed.addField("Today's Hours", result.opening_hours.weekday_text[5],true);
+                            restEmbed.addField("Tomorrow's Hours", result.opening_hours.weekday_text[6], true);
                             break;
 
-                    }
-                
+                    }  
 
                     if(result.opening_hours.open_now){
                         restEmbed.setColor("#1da06a");

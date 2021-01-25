@@ -38,27 +38,28 @@ client.on('message', async(message) => {
     const command = args.shift().toLowerCase();
 
 
-    if(command === '8names' || command === '8n'){
-        client.commands.get('8ballnames').execute(message, args);
-    }
-    else if(command === 'restaurant' || command === 'r'){
+    if(command === 'restaurant' || command === 'r'){
         client.commands.get('restaurant').execute(message, args, GoogleAPI);
     }
-    else if(command === 'gimage'){
-        client.commands.get('gimage').execute(message, args);
-    }
-    else if(command === 'help'){
-        client.commands.get('help').execute(message, args, Discord);
-    }
-    else if(command === '8ball' || command === '8b'){
-        client.commands.get('8ball').execute(message, args);
-    }
-    else if(command === 'spolls'){
-        client.commands.get('spolls').execute(message, args);
-    }
+    // else if(command === '8names' || command === '8n'){
+    //     client.commands.get('8ballnames').execute(message, args);
+    // }
+    // else if(command === 'gimage'){
+    //     client.commands.get('gimage').execute(message, args);
+    // }
+    // else if(command === 'help'){
+    //     client.commands.get('help').execute(message, args, Discord);
+    // }
+    // else if(command === '8ball' || command === '8b'){
+    //     client.commands.get('8ball').execute(message, args);
+    // }
+    // else if(command === 'spolls'){
+    //     client.commands.get('spolls').execute(message, args);
+    // }
     else if(command === 'fooders' || command === 'fo'){
         orderEmbed = fooders(message, args);
     }
+    
     else if(command === 'addorder' || command === 'add'){
         if(!orderEmbed){
             message.reply('please specify an order');
@@ -82,7 +83,7 @@ client.on('message', async(message) => {
         }
     }
     else{
-        message.channel.send('That response is curretly under development');
+        message.channel.send('That response is offline');
     }
 
 });
