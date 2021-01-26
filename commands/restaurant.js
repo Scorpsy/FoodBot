@@ -23,7 +23,7 @@ module.exports = {
 
                     var placeID = data.candidates[0].place_id;
 
-                    return  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&fields=price_level,name,rating,formatted_phone_number,formatted_address,opening_hours,website,photo&key=${GoogleAPI}`);
+                    return  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&fields=user_ratings_total,price_level,name,rating,formatted_phone_number,formatted_address,opening_hours,website&key=${GoogleAPI}`);
 
                 })
                 .then((response) => {
@@ -44,7 +44,10 @@ module.exports = {
                     );
 
                     if(result.rating){
-                        restEmbed.addField("Rating", result.rating, true)
+
+                        n_reveiwers = result.user_ratings_total
+                        restEmbed.addField("Rating", result.rating + ` (${n_reveiwers})`, true)
+
                     }
                     if(result.price_level){
 
