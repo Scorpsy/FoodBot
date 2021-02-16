@@ -41,6 +41,8 @@ client.on('message', async(message) => {
 
 
     if(command === 'restaurant' || command === 'r'){
+        console.log(args)
+
         client.commands.get('restaurant').execute(message, args, GoogleAPI);
     }
     else if(command === '8names' || command === '8n'){
