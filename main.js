@@ -3,6 +3,8 @@ const config = require('./config.json');
 const fs = require('fs');
 const {prefix} = require('./config.json');
 
+require('dotenv').config();
+
 const squigglyRegex = RegExp(/{(.*?)}/);
 const squareRegex = RegExp(/\[[^[]+\]/g);
 
@@ -30,7 +32,6 @@ for(const file of commandFiles){
 
 client.once('ready', () => {
     console.log('FoodBot is alive!');
-
 });
 
 client.on('message', async(message) => {
@@ -131,4 +132,4 @@ function addorder(message, args,order){
 
 }
 
-client.login(config.token);
+client.login(process.env.token);
