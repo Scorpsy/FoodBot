@@ -6,6 +6,9 @@ const {prefix} = require('./config.json');
 const squigglyRegex = RegExp(/{(.*?)}/);
 const squareRegex = RegExp(/\[[^[]+\]/g);
 
+require('dotenv').config();
+//const prefix = process.env.PREFIX;
+
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -41,21 +44,21 @@ client.on('message', async(message) => {
     if(command === 'restaurant' || command === 'r'){
         client.commands.get('restaurant').execute(message, args, GoogleAPI);
     }
-    // else if(command === '8names' || command === '8n'){
-    //     client.commands.get('8ballnames').execute(message, args);
-    // }
-    // else if(command === 'gimage'){
-    //     client.commands.get('gimage').execute(message, args);
-    // }
-    // else if(command === 'help'){
-    //     client.commands.get('help').execute(message, args, Discord);
-    // }
-    // else if(command === '8ball' || command === '8b'){
-    //     client.commands.get('8ball').execute(message, args);
-    // }
-    // else if(command === 'spolls'){
-    //     client.commands.get('spolls').execute(message, args);
-    // }
+    else if(command === '8names' || command === '8n'){
+        client.commands.get('8ballnames').execute(message, args);
+    }
+    else if(command === 'gimage'){
+        client.commands.get('gimage').execute(message, args);
+    }
+    else if(command === 'help'){
+        client.commands.get('help').execute(message, args, Discord);
+    }
+    else if(command === '8ball' || command === '8b'){
+        client.commands.get('8ball').execute(message, args);
+    }
+    else if(command === 'spolls'){
+        client.commands.get('spolls').execute(message, args);
+    }
     else if(command === 'fooders' || command === 'fo'){
         orderEmbed = fooders(message, args);
     }
