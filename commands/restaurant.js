@@ -15,8 +15,7 @@ module.exports = {
             return message.reply('Please add a restaurant name').catch(err => console.log(err));
         }
 
-        let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${businessID}
-        &inputtype=textquery&fields=place_id&key=${GoogleAPI}`;
+        let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${businessID}&inputtype=textquery&fields=place_id&key=${GoogleAPI}`;
 
         console.log(url)
 
