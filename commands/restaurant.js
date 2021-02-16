@@ -1,23 +1,23 @@
 const fetch = require("node-fetch");
 const Discord = require('discord.js');
 
+require('dotenv').config();
+
 module.exports = {
     name: 'restaurant',
     description: 'Search for a restaurant',
-    async execute(message,args,GoogleAPI) {
+    async execute(message,args) {
+
+        let GoogleAPI = process.env.google
+        let location = process.env.location
 
         const businessID = args.join('-');
-
-        console.log(businessID)
-        console.log(GoogleAPI)
 
         if (!businessID) {
             return message.reply('Please add a restaurant name').catch(err => console.log(err));
         }
 
-        let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${businessID}&inputtype=textquery&fields=place_id&key=${GoogleAPI}`;
-
-        console.log(url)
+        let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${businessID}&inputtype=textquery&fields=place_id&key=${GoogleAPI}&locationbias=point:${location}`;
 
         fetch(url)
                 .then((response) => {

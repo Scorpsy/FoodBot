@@ -37,13 +37,9 @@ client.on('message', async(message) => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
-    console.log(prefix)
-
 
     if(command === 'restaurant' || command === 'r'){
-        console.log(args)
-
-        client.commands.get('restaurant').execute(message, args, GoogleAPI);
+        client.commands.get('restaurant').execute(message, args);
     }
     else if(command === '8names' || command === '8n'){
         client.commands.get('8ballnames').execute(message, args);
