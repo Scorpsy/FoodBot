@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
-const config = require('./config.json');
 const fs = require('fs');
-const {prefix} = require('./config.json');
 
 require('dotenv').config();
 
@@ -9,7 +7,7 @@ const squigglyRegex = RegExp(/{(.*?)}/);
 const squareRegex = RegExp(/\[[^[]+\]/g);
 
 require('dotenv').config();
-//const prefix = process.env.PREFIX;
+const prefix = process.env.prefix;
 
 
 const client = new Discord.Client();
@@ -18,8 +16,7 @@ var orderEmbed;
 
 let yelpAPI = require('yelp-api');
 
-let GoogleAPI = config.google;
-
+let GoogleAPI = process.env.google;
 
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
