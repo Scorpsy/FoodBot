@@ -17,6 +17,8 @@ module.exports = {
         let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${businessID}
         &inputtype=textquery&fields=place_id&key=${GoogleAPI}`;
 
+        console.log(url)
+
         fetch(url)
                 .then((response) => {
                     return response.json();
