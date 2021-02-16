@@ -6,7 +6,6 @@ require('dotenv').config();
 const squigglyRegex = RegExp(/{(.*?)}/);
 const squareRegex = RegExp(/\[[^[]+\]/g);
 
-require('dotenv').config();
 const prefix = process.env.prefix;
 
 
