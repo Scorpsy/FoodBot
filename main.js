@@ -48,7 +48,7 @@ client.on('message', async(message) => {
         client.commands.get('gimage').execute(message, args);
     }
     else if(command === 'help'){
-        client.commands.get('help').execute(message, args, Discord);
+        client.commands.get('help').execute(message, args, Discord,prefix);
     }
     else if(command === '8ball' || command === '8b'){
         client.commands.get('8ball').execute(message, args);

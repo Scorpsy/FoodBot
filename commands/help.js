@@ -1,9 +1,7 @@
-const {prefix} = require('../config.json');
-
 module.exports = {
     name: 'help',
     description: 'Current Available Commands',
-    execute(message,args,Discord) {
+    execute(message,args,Discord,prefix) {
         const helpEmbed = new Discord.MessageEmbed()
             .setColor('#eeaaff')
             .setTitle('Commands')
