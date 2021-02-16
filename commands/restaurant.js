@@ -9,6 +9,7 @@ module.exports = {
         const businessID = args.join('-');
 
         console.log(businessID)
+        console.log(GoogleAPI)
 
         if (!businessID) {
             return message.reply('Please add a restaurant name').catch(err => console.log(err));
