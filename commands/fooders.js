@@ -2,7 +2,7 @@ const squigglyRegex = RegExp(/{(.*?)}/);
 const squareRegex = RegExp(/\[[^[]+\]/g);
 const Discord = require('discord.js');
 
-function gay(message, args){
+function order(message, args){
 
     const orderTitle = args.join(' ');
 
