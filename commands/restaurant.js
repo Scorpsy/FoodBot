@@ -10,6 +10,7 @@ module.exports = {
 
         let GoogleAPI = process.env.google
         let location = process.env.location
+        let price_c = false
 
         const businessID = args.join('-');
 
@@ -18,23 +19,30 @@ module.exports = {
         }
 
         let url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${businessID}&inputtype=textquery&fields=place_id&key=${GoogleAPI}&locationbias=point:${location}`;
-
+        //console.log(url);
         fetch(url)
                 .then((response) => {
                     return response.json();
                 })
-                .then( (data) => {
+                .then((data) => {
 
-                    var placeID = data.candidates[0].place_id;
+                    placeID = data.candidates[0].place_id;
 
-                    return  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&fields=user_ratings_total,price_level,name,rating,formatted_phone_number,formatted_address,opening_hours,website&key=${GoogleAPI}`);
+                    return  fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${location}&destination=place_id:${placeID}&key=${GoogleAPI}`);
 
                 })
                 .then((response) => {
                     return response.json();
                 })
                 .then((data) => {
-                    //console.log(data.result)
+                    loc = data
+
+                    return fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeID}&fields=user_ratings_total,price_level,name,rating,formatted_phone_number,formatted_address,opening_hours,website&key=${GoogleAPI}`);
+
+                })
+                .then((response) => {
+                    return response.json();
+                }).then((data) => {
                     
                     var d = new Date();
                     var n = d.getDay();
@@ -43,9 +51,13 @@ module.exports = {
                     const restEmbed = new Discord.MessageEmbed()
                     .addFields(
                         { name: 'Address', value: result.formatted_address},
-                        { name: 'Phone Number', value: result.formatted_phone_number, inline: true },
+                        { name: 'Duration', value: loc.routes[0].legs[0].duration.text, inline: true },
                         
                     );
+                    if(!(result.formatted_phone_number === undefined)){
+                        restEmbed.addField('Phone Number', result.formatted_phone_number, true)
+                    }
+
 
                     if(result.rating){
 
@@ -64,7 +76,11 @@ module.exports = {
                         }
 
                         restEmbed.addField("Price Level", string,true);
+                        price_c = true
                         
+                    }
+                    if(!price_c && !(result.formatted_phone_number === undefined)){
+                        restEmbed.addField("Price Level", "$",true);
                     }
 
                     if(result.opening_hours !== undefined){
