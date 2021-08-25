@@ -14,8 +14,6 @@ module.exports = {
                 {name: prefix + 'addorder:', value:'add individual order of a person,\n Use format: Order'},
                 {name: prefix + 'orderlist:', value:'Return order for a restaurant'},
             )
-            //.setImage('https://static.zerochan.net/Mona.(Genshin.Impact).full.3112267.jpg');
-
 
             message.channel.send(helpEmbed);
     }
